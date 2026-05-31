@@ -1,3 +1,3 @@
-from modules.system_monitor import show_system_info
+from modules.file_integrity import check_file
 
-show_system_info()
+check_file()
