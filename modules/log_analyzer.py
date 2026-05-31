@@ -26,20 +26,22 @@ def analyze_log():
                         matches.append(line.strip())
                         break
 
-        print("\n=== Security Report ===\n")
+        report = "\n=== Security Report ===\n\n"
 
-        print(f"Failed Events : {keywords['failed']}")
-        print(f"Error Events  : {keywords['error']}")
-        print(f"Warning Events: {keywords['warning']}")
-        print(f"Sudo Events   : {keywords['sudo']}")
+        report += f"Failed Events : {keywords['failed']}\n"
+        report += f"Error Events  : {keywords['error']}\n"
+        report += f"Warning Events: {keywords['warning']}\n"
+        report += f"Sudo Events   : {keywords['sudo']}\n"
 
-        print("\n=== Recent Events ===\n")
+        report += "\n=== Recent Events ===\n\n"
 
         for entry in matches[-10:]:
-            print(entry)
+            report += entry + "\n"
+
+        return report
 
     except PermissionError:
-        print("Permission denied. Run with sudo.")
+        return "Permission denied. Run with sudo."
 
     except FileNotFoundError:
-        print("Log file not found.")
+        return "Log file not found."

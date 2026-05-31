@@ -20,7 +20,20 @@ def main():
         choice = input("\nSelect option: ")
 
         if choice == "1":
-            scan_ports()
+            target = input("Enter target: ")
+
+            start_port = int(input("Start port: "))
+
+            end_port = int(input("End port: "))
+
+            print("\nScanning ports...")
+            print(
+                scan_ports(
+                    target,
+                    start_port,
+                    end_port
+                )
+            )
 
         elif choice == "2":
             print("\n")

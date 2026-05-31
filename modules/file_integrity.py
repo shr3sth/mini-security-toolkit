@@ -15,23 +15,45 @@ def calculate_hash(filepath):
     return sha256.hexdigest()
 
 
-def save_baseline():
-    filepath = input("Enter file path: ")
+def save_baseline(filepath):
 
     try:
+
         file_hash = calculate_hash(filepath)
 
-        with open(BASELINE_FILE, "a") as baseline:
-            baseline.write(f"{filepath}|{file_hash}\n")
+        baselines = {}
 
-        print("\nBaseline saved successfully.")
+        try:
+
+            with open(BASELINE_FILE, "r") as baseline:
+
+                for line in baseline:
+
+                    saved_path, saved_hash = line.strip().split("|")
+
+                    baselines[saved_path] = saved_hash
+
+        except FileNotFoundError:
+            pass
+
+        baselines[filepath] = file_hash
+
+        with open(BASELINE_FILE, "w") as baseline:
+
+            for path, saved_hash in baselines.items():
+
+                baseline.write(
+                    f"{path}|{saved_hash}\n"
+                )
+
+        return "Baseline saved successfully."
 
     except FileNotFoundError:
-        print("File not found.")
+
+        return "File not found."
 
 
-def verify_integrity():
-    filepath = input("Enter file path: ")
+def verify_integrity(filepath):
 
     try:
         current_hash = calculate_hash(filepath)
@@ -43,14 +65,14 @@ def verify_integrity():
                 if saved_path == filepath:
 
                     if current_hash == saved_hash:
-                        print("\n✓ File unchanged")
+                        return "✓ File unchanged"
 
                     else:
-                        print("\n⚠ WARNING: File has been modified!")
+                        return "⚠ WARNING: File has been modified!"
 
                     return
 
-        print("No baseline found for this file.")
+        return "No baseline found for this file."
 
     except FileNotFoundError:
-        print("File not found.")
+        return "File not found."
