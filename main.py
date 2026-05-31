@@ -1,5 +1,5 @@
 from modules.port_scanner import scan_ports
-from modules.system_monitor import show_system_info
+from modules.system_monitor import get_system_info
 from modules.file_integrity import save_baseline, verify_integrity
 from modules.log_analyzer import analyze_log
 
@@ -23,7 +23,8 @@ def main():
             scan_ports()
 
         elif choice == "2":
-            show_system_info()
+            print("\n")
+            print(get_system_info())
 
         elif choice == "3":
             save_baseline()
