@@ -1,12 +1,3 @@
-from modules.file_integrity import save_baseline, verify_integrity
+from modules.log_analyzer import analyze_log
 
-print("1. Save Baseline")
-print("2. Verify Integrity")
-
-choice = input("Select option: ")
-
-if choice == "1":
-    save_baseline()
-
-elif choice == "2":
-    verify_integrity()
+analyze_log()
