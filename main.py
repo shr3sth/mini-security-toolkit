@@ -1,3 +1,3 @@
-from modules.port_scanner import scan_ports
+from modules.system_monitor import show_system_info
 
-scan_ports()
+show_system_info()
