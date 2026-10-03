@@ -93,6 +93,9 @@ git clone https://github.com/shr3sth/mini-security-toolkit.git
 
 cd mini-security-toolkit
 
+python3 -m venv venv
+source venv/bin/activate
+
 pip install -r requirements.txt
 ```
 
