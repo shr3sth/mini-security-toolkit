@@ -58,11 +58,12 @@ def gui_port_scan():
 
 def show_log_analysis():
 
-    output_box.delete("1.0", tk.END)
+    filepath = filepath_entry.get()
 
+    output_box.delete("1.0", tk.END)
     output_box.insert(
         tk.END,
-        analyze_log()
+        analyze_log(filepath)
     )
 
 
