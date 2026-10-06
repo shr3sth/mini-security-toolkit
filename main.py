@@ -46,7 +46,9 @@ def main():
             verify_integrity()
 
         elif choice == "5":
-            analyze_log()
+            log_file = input("Enter log file path: ")
+            print("\n")
+            print(analyze_log(log_file))
 
         elif choice == "6":
             print("Goodbye!")
